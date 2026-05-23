@@ -4,6 +4,7 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Certifications from "@/components/Certifications";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Certifications />
       </main>
       <Footer />
+      <ChatWidget />
     </>
   );
 }
