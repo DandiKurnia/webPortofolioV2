@@ -62,6 +62,16 @@ export default function ChatWidget() {
     }
   }, [open, messages]);
 
+  // Lock body scroll when chat is open
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   async function sendMessage(e: FormEvent) {
     e.preventDefault();
     const text = input.trim();
