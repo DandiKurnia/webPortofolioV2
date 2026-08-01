@@ -93,9 +93,9 @@ function ContactWindow() {
           </h3>
           <a
             className="font-mono font-bold text-xs sm:text-sm md:text-base bg-neon-yellow px-3 md:px-4 py-1.5 md:py-2 brutal-border inline-block hover:bg-neon-blue hover:text-white transition-colors"
-            href="mailto:dandikurnia608@gmail.com"
+            href="mailto:dandiputraa31@gmail.com"
           >
-            dandikurnia608@gmail.com
+            dandiputraa31@gmail.com
           </a>
         </div>
       </div>

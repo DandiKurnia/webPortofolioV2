@@ -64,3 +64,14 @@ model Resume {
 
   @@map("resumes")
 }
+
+model Portfolio {
+  id        String   @id @default(cuid())
+  url       String
+  filename  String
+  sizeBytes Int      @map("size_bytes")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("portfolios")
+}

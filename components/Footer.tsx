@@ -22,9 +22,9 @@ export default function Footer() {
         </p>
         <a
           className="font-headline text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl font-black text-surface bg-pure-black border-4 border-surface inline-flex items-center gap-1 sm:gap-2 px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 mt-2 sm:mt-4 w-max max-w-full hover:bg-neon-blue hover:text-pure-black hover:border-pure-black transition-all group"
-          href="mailto:dandikurnia608@gmail.com"
+          href="mailto:dandiputraa31@gmail.com"
         >
-          <span className="truncate">dandikurnia608@gmail.com</span>
+          <span className="truncate">dandiputraa31@gmail.com</span>
           <span className="material-symbols-outlined text-xl sm:text-2xl md:text-xl group-hover:translate-x-2 transition-transform shrink-0">
             arrow_forward
           </span>

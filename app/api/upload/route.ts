@@ -15,6 +15,7 @@ const MAX_SIZE_DOC = 10 * 1024 * 1024; // 10MB
 const FOLDER_BY_KIND: Record<string, string> = {
   image: "projects",
   resume: "resume",
+  portfolio: "portfolio",
 };
 
 export async function POST(request: NextRequest) {
@@ -49,6 +50,13 @@ export async function POST(request: NextRequest) {
     if (kind === "resume" && !isDoc) {
       return NextResponse.json(
         { error: "Resume must be a PDF." },
+        { status: 400 }
+      );
+    }
+
+    if (kind === "portfolio" && !isDoc) {
+      return NextResponse.json(
+        { error: "Portfolio must be a PDF." },
         { status: 400 }
       );
     }

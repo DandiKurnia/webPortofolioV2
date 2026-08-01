@@ -43,4 +43,7 @@ next-env.d.ts
 # templates
 /template
 
+# obsidian notes vault
+/myportofoliov2
+
 /app/generated/prisma
