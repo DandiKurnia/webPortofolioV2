@@ -11,7 +11,7 @@ export default withAuth(
       if (isAuth) {
         return NextResponse.redirect(new URL("/admin/overview", req.url));
       }
-      return null;
+      return NextResponse.next();
     }
 
     if (!isAuth) {

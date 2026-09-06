@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brutalistfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&amp;family=Space+Grotesk:wght@500&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#eaea00",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#fff4f6",
+                        "tertiary": "#ac2471",
+                        "on-secondary-container": "#fefcff",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#ffff00",
+                        "surface-dim": "#dadada",
+                        "on-secondary-fixed-variant": "#004395",
+                        "on-secondary-fixed": "#001a42",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface": "#f9f9f9",
+                        "on-surface-variant": "#484831",
+                        "on-primary-fixed": "#1d1d00",
+                        "tertiary-fixed": "#ffd8e6",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "primary-fixed-dim": "#cdcd00",
+                        "secondary-container": "#2170e4",
+                        "on-secondary": "#ffffff",
+                        "outline": "#79785f",
+                        "tertiary-fixed-dim": "#ffb0d0",
+                        "inverse-surface": "#303030",
+                        "on-primary-container": "#757500",
+                        "surface-variant": "#e2e2e2",
+                        "secondary": "#0058be",
+                        "surface-container": "#eeeeee",
+                        "on-tertiary-fixed-variant": "#8c0058",
+                        "outline-variant": "#cac8aa",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#3d0024",
+                        "on-primary-fixed-variant": "#494900",
+                        "on-tertiary-container": "#c43984",
+                        "surface-container-low": "#f3f3f3",
+                        "on-background": "#1b1b1b",
+                        "background": "#f9f9f9",
+                        "surface-tint": "#626200",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1b1b1b",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#cdcd00",
+                        "primary": "#626200",
+                        "surface-bright": "#f9f9f9",
+                        "surface-container-highest": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "shadow-offset": "8px",
+                        "margin-desktop": "64px",
+                        "border-width": "4px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": [
+                            "Montserrat"
+                        ],
+                        "body-md": [
+                            "Space Grotesk"
+                        ],
+                        "display-2xl": [
+                            "Montserrat"
+                        ],
+                        "label-bold": [
+                            "Space Mono"
+                        ],
+                        "headline-lg": [
+                            "Montserrat"
+                        ]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": [
+                            "32px",
+                            {
+                                "lineHeight": "110%",
+                                "fontWeight": "900"
+                            }
+                        ],
+                        "body-md": [
+                            "18px",
+                            {
+                                "lineHeight": "150%",
+                                "fontWeight": "500"
+                            }
+                        ],
+                        "display-2xl": [
+                            "96px",
+                            {
+                                "lineHeight": "100%",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "900"
+                            }
+                        ],
+                        "label-bold": [
+                            "14px",
+                            {
+                                "lineHeight": "120%",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "headline-lg": [
+                            "48px",
+                            {
+                                "lineHeight": "110%",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "900"
+                            }
+                        ]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-surface">
+<!-- TopNavBar (Shared Component) -->
+<!-- Content: Exact Labels/Strings. Styling: Execution of style_* keys -->
+<!-- Nav Links removed for mobile focus as per instructions, keeping logo and CTA -->
+<header class="bg-surface border-b-4 border-on-surface flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base w-full sticky top-0 z-50">
+<a class="font-headline-lg-mobile text-headline-lg-mobile font-black text-on-surface" href="#">Brutalistfolio</a>
+<button class="font-label-bold text-label-bold bg-primary-container text-on-surface border-4 border-on-surface px-4 py-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all uppercase whitespace-nowrap">
+            Download CV
+        </button>
+</header>
+<main class="w-full max-w-[100vw]">
+<!-- Hero Section -->
+<section class="px-margin-mobile py-12 flex flex-col items-center justify-center relative overflow-hidden border-b-4 border-on-surface">
+<!-- Decorative Elements -->
+<div class="absolute top-4 left-4 w-16 h-16 bg-tertiary border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-full z-0 animate-[spin_10s_linear_infinite]"></div>
+<div class="absolute bottom-12 right-4 w-20 h-20 bg-secondary border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-0 rotate-12"></div>
+<h1 class="font-display-2xl text-[64px] md:text-display-2xl text-center leading-none mb-gutter z-10 break-words w-full uppercase">
+                HELLO,<br/>I AM ALEX
+            </h1>
+<!-- HIRE ME Computer Window -->
+<div class="w-full max-w-sm bg-surface border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col z-10 mt-gutter rotate-[-2deg] hover:rotate-0 transition-transform duration-300">
+<!-- Title Bar -->
+<div class="bg-on-surface text-surface py-2 px-3 border-b-4 border-on-surface flex items-center justify-between">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-error border border-on-surface"></div>
+<div class="w-3 h-3 rounded-full bg-primary-container border border-on-surface"></div>
+<div class="w-3 h-3 rounded-full bg-[#27C93F] border border-on-surface"></div>
+</div>
+<span class="font-label-bold text-label-bold text-xs uppercase tracking-widest">HIRE_ME.EXE</span>
+</div>
+<!-- Body -->
+<div class="p-gutter bg-surface flex flex-col items-center">
+<div class="w-32 h-32 border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-4 overflow-hidden bg-primary-container">
+<img alt="Alex Profile" class="w-full h-full object-cover grayscale contrast-150 mix-blend-multiply" data-alt="A highly stylized, high-contrast black and white portrait of a young creative professional with a confident expression. The image is treated with a neobrutalist aesthetic, featuring deep shadows, blown-out highlights, and a raw, unpolished texture. The portrait is framed tightly within a square container with a thick black border and a solid neon yellow background that bleeds through the grayscale image due to a multiply blend mode. The overall mood is edgy, modern, and unapologetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdCJKdzH5HRNkY8w0SFFc-Rbi_cq3kHhg2tB_-BScG8GpXGOPPasHnq0koR8EcLkLoTjsI5Mk4iQYPY7uOT--3JnP1VHbyRuHow7aLspVdN8yNYC5GBu3d_L6NArE2HUo38kCQ26AwqFe3RTH7e0A0NWbRN95Mg0OS5UvkgyHPn5bg0TobqRUGqzQVYzIv2QXVsYAA41frgMW8cecG9R7CVy_FwbcdY9de0z6VQu4QUEqXxgasLAEuKM2orpuQ0sLDOLR1jNWo6hc"/>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mb-2 text-center uppercase">Frontend Dev &amp; UI Punk</h2>
+<a class="inline-block mt-2 px-4 py-2 bg-secondary text-on-secondary font-label-bold text-label-bold border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none active:translate-x-2 active:translate-y-2 transition-all uppercase" href="mailto:alex@neubrutalist.studio">
+                        alex@neubrutalist.studio
+                    </a>
+</div>
+</div>
+</section>
+<!-- Tech Arsenal (Marquee) -->
+<section class="py-gutter border-b-4 border-on-surface bg-primary-container overflow-hidden whitespace-nowrap flex items-center relative">
+<div class="font-headline-lg-mobile text-headline-lg-mobile uppercase flex items-center gap-gutter animate-[marquee_20s_linear_infinite] will-change-transform pr-gutter">
+<span class="text-on-surface">FIGMA</span> <span class="material-symbols-outlined text-[32px] text-on-surface font-black">asterisk</span>
+<span class="text-on-surface">MONGODB</span> <span class="material-symbols-outlined text-[32px] text-on-surface font-black">asterisk</span>
+<span class="text-on-surface">REACT</span> <span class="material-symbols-outlined text-[32px] text-on-surface font-black">asterisk</span>
+<span class="text-on-surface">TAILWIND</span> <span class="material-symbols-outlined text-[32px] text-on-surface font-black">asterisk</span>
+<span class="text-on-surface">NODE.JS</span> <span class="material-symbols-outlined text-[32px] text-on-surface font-black">asterisk</span>
+<span class="text-on-surface">TYPESCRIPT</span> <span class="material-symbols-outlined text-[32px] text-on-surface font-black">asterisk</span>
+<!-- Duplicate for seamless loop -->
+<span class="text-on-surface">FIGMA</span> <span class="material-symbols-outlined text-[32px] text-on-surface font-black">asterisk</span>
+<span class="text-on-surface">MONGODB</span> <span class="material-symbols-outlined text-[32px] text-on-surface font-black">asterisk</span>
+<span class="text-on-surface">REACT</span> <span class="material-symbols-outlined text-[32px] text-on-surface font-black">asterisk</span>
+</div>
+</section>
+<style>
+            @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+        </style>
+<!-- Selected Work -->
+<section class="px-margin-mobile py-12 border-b-4 border-on-surface bg-tertiary-container">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase mb-gutter text-center underline decoration-4 underline-offset-8 decoration-tertiary">Selected Work</h2>
+<div class="flex flex-col gap-gutter max-w-sm mx-auto">
+<!-- Project 1 -->
+<div class="w-full bg-surface border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+<div class="bg-on-surface text-surface py-2 px-3 border-b-4 border-on-surface flex justify-between items-center">
+<span class="font-label-bold text-label-bold text-xs uppercase tracking-widest">CYBER-DASH.ZIP</span>
+<span class="material-symbols-outlined text-sm">folder</span>
+</div>
+<div class="h-48 border-b-4 border-on-surface bg-surface-variant overflow-hidden">
+<img alt="Cyber-dash Project" class="w-full h-full object-cover grayscale contrast-125" data-alt="A screenshot of a futuristic, data-heavy dashboard interface displayed on a monitor. The UI is dense with charts, graphs, and terminal-like text, designed in a harsh, high-contrast neobrutalist style. The color palette is strictly black, white, and a single striking accent color like neon yellow. The image is treated with high contrast and noise to give it a raw, digital punk aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCOe1lYVlbhze9NmvtE_jBo9rLM1yH4ZkWwFAQVgKTcy5KlwfTVX7sXUqwpnVvcwNyfIUmHWw7uiTr5TlIPSoxMF_THRAFImvHb0GPSn1Q6ZtSgvNyFCwQdu3TSsbFBqJ9-X4nktzpv8knc1fIFS_dFArKP2Ls5SB9N5_Z9j-2kg4Gy4Q4n-GX3QVD_wb9sEQrXpU7vNmQLYUfbMTE2jIPFGtW_zprA1mwmbFfAWOnEp3OvOgukP9ZRP3VM2yEZnXERySOIdirrBw"/>
+</div>
+<div class="p-4 bg-primary-container">
+<h3 class="font-headline-lg-mobile text-2xl uppercase mb-2">Cyber-dash</h3>
+<p class="font-body-md text-sm mb-4 border-l-4 border-on-surface pl-2">A high-octane analytics dashboard built for speed and visual impact.</p>
+<button class="w-full py-2 bg-on-surface text-surface font-label-bold text-label-bold border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase">View Case Study</button>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="w-full bg-surface border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col mt-4">
+<div class="bg-on-surface text-surface py-2 px-3 border-b-4 border-on-surface flex justify-between items-center">
+<span class="font-label-bold text-label-bold text-xs uppercase tracking-widest">NEO-POSTER.PNG</span>
+<span class="material-symbols-outlined text-sm">image</span>
+</div>
+<div class="h-48 border-b-4 border-on-surface bg-surface-variant overflow-hidden">
+<img alt="Neo-poster Project" class="w-full h-full object-cover grayscale contrast-125" data-alt="An abstract, typographic poster design leaning heavily into neobrutalism. Massive, distorted typography overlaps with geometric vector shapes and harsh, thick black borders. The primary colors are a jarring mix of hot pink and neon yellow against a pure white background. The composition is deliberately chaotic and anti-grid, conveying a sense of disruptive, youthful energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfFXrZDVJNBaah7C6XJrpLMNmLxA5bFaorJQkxLMu3FmK-XADShbObp2pmY1ptSM5LZu4u5UdebMxGwFsXIqDV-RRNcyNp0y8Cs4potIvSw994rsOpIqE2ug2mgfoVToczroSqQvqvzstdU9_sux9Ial0A4vB9WBmlLKqiq6HpJ4Sp6MBJNkCyoB8hGgCjEXehTXshHTW4_-SWlqslNPTRwrZzCL7jPX6iWpTAwnVMci4MWEEHpEXdhqXHz3TiECGBQj8hLo34Z_0"/>
+</div>
+<div class="p-4 bg-tertiary text-on-tertiary">
+<h3 class="font-headline-lg-mobile text-2xl uppercase mb-2">Neo-poster</h3>
+<p class="font-body-md text-sm mb-4 border-l-4 border-on-surface pl-2">Generative typography experiments challenging traditional layouts.</p>
+<button class="w-full py-2 bg-primary-container text-on-surface font-label-bold text-label-bold border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all uppercase">View Case Study</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Wall of Validation (Certificates) -->
+<section class="px-margin-mobile py-12 border-b-4 border-on-surface bg-surface">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg uppercase mb-gutter text-center">Wall of Validation</h2>
+<div class="flex flex-col gap-4 max-w-sm mx-auto">
+<!-- Cert 1 -->
+<div class="p-4 border-4 border-on-surface bg-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-start gap-4">
+<div class="w-12 h-12 bg-secondary border-4 border-on-surface flex items-center justify-center shrink-0 rotate-[-5deg]">
+<span class="material-symbols-outlined text-on-secondary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<h4 class="font-label-bold text-label-bold uppercase">Advanced Frontend Architecture</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Meta / 2023</p>
+</div>
+</div>
+<!-- Cert 2 -->
+<div class="p-4 border-4 border-on-surface bg-primary-container shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-start gap-4 translate-x-2">
+<div class="w-12 h-12 bg-surface border-4 border-on-surface flex items-center justify-center shrink-0 rotate-[3deg]">
+<span class="material-symbols-outlined text-on-surface" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div>
+<h4 class="font-label-bold text-label-bold uppercase">UX Psychology Practitioner</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Nielsen Norman / 2022</p>
+</div>
+</div>
+<!-- Cert 3 -->
+<div class="p-4 border-4 border-on-surface bg-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-start gap-4 -translate-x-1">
+<div class="w-12 h-12 bg-error border-4 border-on-surface flex items-center justify-center shrink-0 rotate-[-2deg]">
+<span class="material-symbols-outlined text-on-error" data-weight="fill" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<h4 class="font-label-bold text-label-bold uppercase">CSS Mastery</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Frontend Masters / 2021</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<!-- Content: Exact Labels/Strings. Styling: Execution of style_* keys -->
+<footer class="bg-on-surface text-surface p-margin-mobile md:p-margin-desktop border-t-4 border-on-surface flex flex-col md:flex-row justify-between items-start gap-gutter w-full">
+<div class="flex flex-col gap-4">
+<h2 class="font-display-2xl text-[48px] md:text-display-2xl text-primary leading-none uppercase">
+                Let's make<br/>something<br/>loud.
+            </h2>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-surface mt-4">© 2024 NEUBRUTALIST. STUDIO</p>
+</div>
+<div class="flex flex-col gap-2 mt-gutter md:mt-0">
+<h3 class="font-label-bold text-label-bold uppercase text-surface-variant mb-2">Stalk Me</h3>
+<a class="font-headline-lg-mobile text-headline-lg-mobile text-surface hover:text-tertiary-fixed transition-colors active:opacity-80 uppercase" href="#">GitHub</a>
+<a class="font-headline-lg-mobile text-headline-lg-mobile text-surface hover:text-tertiary-fixed transition-colors active:opacity-80 uppercase" href="#">LinkedIn</a>
+<a class="font-headline-lg-mobile text-headline-lg-mobile text-surface hover:text-tertiary-fixed transition-colors active:opacity-80 uppercase" href="#">Twitter</a>
+<a class="font-headline-lg-mobile text-headline-lg-mobile text-surface hover:text-tertiary-fixed transition-colors active:opacity-80 uppercase" href="#">Dribbble</a>
+</div>
+</footer>
+</body></html>

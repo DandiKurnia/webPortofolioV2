@@ -1,0 +1,302 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Login | Brutalistfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&amp;family=Space+Grotesk:wght@500;700&amp;family=Space+Mono:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#ffb0d0",
+              "on-tertiary-container": "#c43984",
+              "surface-tint": "#626200",
+              surface: "#f9f9f9",
+              "error-container": "#ffdad6",
+              "outline-variant": "#cac8aa",
+              "on-tertiary-fixed": "#3d0024",
+              "on-primary-fixed-variant": "#494900",
+              "surface-variant": "#e2e2e2",
+              "surface-container-highest": "#e2e2e2",
+              "on-secondary-container": "#fefcff",
+              "primary-fixed": "#eaea00",
+              "on-surface": "#1b1b1b",
+              "on-secondary-fixed": "#001a42",
+              "secondary-fixed-dim": "#adc6ff",
+              "on-error-container": "#93000a",
+              "surface-container-low": "#f3f3f3",
+              "on-primary-fixed": "#1d1d00",
+              "primary-container": "#ffff00",
+              "on-tertiary-fixed-variant": "#8c0058",
+              "inverse-on-surface": "#f1f1f1",
+              "on-background": "#1b1b1b",
+              tertiary: "#ac2471",
+              primary: "#626200",
+              "surface-dim": "#dadada",
+              "secondary-container": "#2170e4",
+              "surface-container": "#eeeeee",
+              "on-surface-variant": "#484831",
+              "on-secondary": "#ffffff",
+              "on-error": "#ffffff",
+              "surface-bright": "#f9f9f9",
+              "on-secondary-fixed-variant": "#004395",
+              "surface-container-lowest": "#ffffff",
+              secondary: "#0058be",
+              "tertiary-fixed": "#ffd8e6",
+              error: "#ba1a1a",
+              "tertiary-container": "#fff4f6",
+              "surface-container-high": "#e8e8e8",
+              background: "#f9f9f9",
+              outline: "#79785f",
+              "on-primary": "#ffffff",
+              "secondary-fixed": "#d8e2ff",
+              "primary-fixed-dim": "#cdcd00",
+              "on-primary-container": "#757500",
+              "inverse-primary": "#cdcd00",
+              "inverse-surface": "#303030",
+              "on-tertiary": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-desktop": "64px",
+              gutter: "24px",
+              "shadow-offset": "8px",
+              base: "8px",
+              "margin-mobile": "16px",
+              "border-width": "4px",
+            },
+            fontFamily: {
+              "label-bold": ["Space Mono"],
+              "body-md": ["Space Grotesk"],
+              "headline-lg": ["Montserrat"],
+              "headline-lg-mobile": ["Montserrat"],
+              "display-2xl": ["Montserrat"],
+            },
+            fontSize: {
+              "label-bold": ["14px", { lineHeight: "120%", fontWeight: "700" }],
+              "body-md": ["18px", { lineHeight: "150%", fontWeight: "500" }],
+              "headline-lg": [
+                "48px",
+                {
+                  lineHeight: "110%",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "900",
+                },
+              ],
+              "headline-lg-mobile": [
+                "32px",
+                { lineHeight: "110%", fontWeight: "900" },
+              ],
+              "display-2xl": [
+                "96px",
+                {
+                  lineHeight: "100%",
+                  letterSpacing: "-0.04em",
+                  fontWeight: "900",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .brutalist-grid {
+        background-image: radial-gradient(circle, #bcbcbc 1px, transparent 1px);
+        background-size: 32px 32px;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface font-body-md text-on-surface brutalist-grid min-h-screen flex items-center justify-center p-margin-mobile md:p-margin-desktop"
+  >
+    <main class="w-full max-w-[500px]">
+      <!-- Computer Window Container -->
+      <div
+        class="bg-surface-container-lowest border-[4px] border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col"
+      >
+        <!-- Window Title Bar (Vibrant Yellow Header) -->
+        <div
+          class="bg-primary-container border-b-[4px] border-on-surface px-base py-4 flex justify-between items-center"
+        >
+          <div class="flex gap-2">
+            <div
+              class="w-4 h-4 rounded-full border-2 border-on-surface bg-[#FF5F56]"
+            ></div>
+            <div
+              class="w-4 h-4 rounded-full border-2 border-on-surface bg-[#FFBD2E]"
+            ></div>
+            <div
+              class="w-4 h-4 rounded-full border-2 border-on-surface bg-[#27C93F]"
+            ></div>
+          </div>
+          <div
+            class="font-label-bold text-label-bold text-on-surface uppercase tracking-widest"
+          >
+            System_Auth_v1.0
+          </div>
+          <div class="w-12"></div>
+          <!-- Spacer to center title logic if needed -->
+        </div>
+        <!-- Login Content Area -->
+        <div class="p-base md:p-gutter flex flex-col gap-gutter">
+          <header class="text-center">
+            <h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">
+              Login
+            </h1>
+            <p class="font-body-md text-on-surface-variant">
+              Enter your credentials to access the terminal.
+            </p>
+          </header>
+          <form class="flex flex-col gap-6" onsubmit="return false;">
+            <!-- Email Input -->
+            <div class="flex flex-col gap-2">
+              <label
+                class="font-label-bold text-label-bold uppercase"
+                for="email"
+                >User_Email</label
+              >
+              <div class="relative">
+                <input
+                  class="w-full bg-surface-container-lowest border-[4px] border-on-surface p-4 font-label-bold text-label-bold focus:outline-none focus:ring-0 focus:shadow-[4px_4px_0px_0px_#ac2471] transition-all"
+                  id="email"
+                  placeholder="name@domain.com"
+                  type="email"
+                />
+              </div>
+            </div>
+            <!-- Password Input -->
+            <div class="flex flex-col gap-2">
+              <label
+                class="font-label-bold text-label-bold uppercase"
+                for="password"
+                >Auth_Token</label
+              >
+              <div class="relative">
+                <input
+                  class="w-full bg-surface-container-lowest border-[4px] border-on-surface p-4 font-label-bold text-label-bold focus:outline-none focus:ring-0 focus:shadow-[4px_4px_0px_0px_#ac2471] transition-all"
+                  id="password"
+                  placeholder="••••••••"
+                  type="password"
+                />
+              </div>
+            </div>
+            <!-- Actions Row -->
+            <div class="flex justify-between items-center">
+              <label class="flex items-center gap-2 cursor-pointer group">
+                <input
+                  class="w-6 h-6 border-4 border-on-surface rounded-none checked:bg-primary appearance-none checked:border-on-surface transition-all cursor-pointer"
+                  type="checkbox"
+                />
+                <span class="font-label-bold text-label-bold">Remember_Me</span>
+              </label>
+              <a
+                class="font-label-bold text-label-bold text-tertiary underline decoration-2 underline-offset-4 hover:text-on-surface transition-colors"
+                href="#"
+                >Forgot Password?</a
+              >
+            </div>
+            <!-- Submit Button (Bright Pink) -->
+            <button
+              class="w-full py-6 bg-tertiary text-on-tertiary border-[4px] border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-2 active:translate-y-2 active:shadow-none transition-all flex justify-center items-center gap-2"
+            >
+              <span class="font-headline-lg-mobile text-headline-lg-mobile"
+                >Sign In</span
+              >
+              <span
+                class="material-symbols-outlined font-black"
+                data-icon="arrow_forward"
+                >arrow_forward</span
+              >
+            </button>
+          </form>
+          <!-- Footer Links -->
+          <div
+            class="mt-4 pt-gutter border-t-[4px] border-on-surface flex flex-col md:flex-row justify-between items-center gap-4"
+          >
+            <p class="font-body-md">New here?</p>
+            <a
+              class="w-full md:w-auto px-6 py-2 bg-secondary-fixed text-on-secondary-fixed border-[4px] border-on-surface font-label-bold text-label-bold text-center hover:bg-secondary-fixed-dim transition-colors"
+              href="#"
+              >Create Account</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Decorative "Sticker" elements to enhance high-energy Neubrutalist vibe -->
+      <div class="relative hidden md:block">
+        <div
+          class="absolute -top-[580px] -right-[100px] -rotate-12 bg-primary-container border-[4px] border-on-surface p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+        >
+          <span
+            class="font-display-2xl text-[48px] leading-none text-on-surface"
+            >!</span
+          >
+        </div>
+        <div
+          class="absolute -bottom-[20px] -left-[80px] rotate-6 bg-tertiary-fixed border-[4px] border-on-surface px-4 py-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+        >
+          <span class="font-label-bold text-on-tertiary-fixed-variant"
+            >ACCESS_GRANTED.SYS</span
+          >
+        </div>
+      </div>
+    </main>
+    <!-- Global Footer for Identity -->
+    <footer
+      class="fixed bottom-0 left-0 w-full flex justify-between items-end p-margin-mobile md:p-base pointer-events-none"
+    >
+      <div
+        class="pointer-events-auto bg-on-surface text-surface p-2 border-[4px] border-on-surface"
+      >
+        <p class="font-label-bold text-label-bold">
+          © 2024 NEUBRUTALIST. STUDIO
+        </p>
+      </div>
+      <div class="pointer-events-auto flex gap-base">
+        <div
+          class="bg-surface-container-highest border-[4px] border-on-surface p-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+        >
+          <span
+            class="material-symbols-outlined text-on-surface"
+            data-icon="dark_mode"
+            >dark_mode</span
+          >
+        </div>
+        <div
+          class="bg-surface-container-highest border-[4px] border-on-surface p-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+        >
+          <span
+            class="material-symbols-outlined text-on-surface"
+            data-icon="help"
+            >help</span
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

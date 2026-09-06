@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Neubrutalist Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&amp;family=Space+Grotesk:wght@500&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#626200",
+                        "on-tertiary-fixed-variant": "#8c0058",
+                        "on-surface-variant": "#484831",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffd8e6",
+                        "tertiary": "#ac2471",
+                        "inverse-primary": "#cdcd00",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#303030",
+                        "surface-bright": "#f9f9f9",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-dim": "#dadada",
+                        "on-primary-fixed": "#1d1d00",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#ffff00",
+                        "on-surface": "#1b1b1b",
+                        "outline": "#79785f",
+                        "secondary": "#0058be",
+                        "primary-fixed": "#eaea00",
+                        "surface": "#f9f9f9",
+                        "primary-fixed-dim": "#cdcd00",
+                        "on-primary-container": "#757500",
+                        "surface-variant": "#e2e2e2",
+                        "on-background": "#1b1b1b",
+                        "on-primary-fixed-variant": "#494900",
+                        "on-tertiary-fixed": "#3d0024",
+                        "outline-variant": "#cac8aa",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-secondary-container": "#fefcff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#c43984",
+                        "secondary-container": "#2170e4",
+                        "surface-container-low": "#f3f3f3",
+                        "on-secondary-fixed": "#001a42",
+                        "on-secondary-fixed-variant": "#004395",
+                        "tertiary-fixed-dim": "#ffb0d0",
+                        "tertiary-container": "#fff4f6",
+                        "background": "#f9f9f9",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#626200",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eeeeee"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "shadow-offset": "8px",
+                        "border-width": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat"],
+                        "display-2xl": ["Montserrat"],
+                        "label-bold": ["Space Mono"],
+                        "body-md": ["Space Grotesk"],
+                        "headline-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", { "lineHeight": "110%", "fontWeight": "900" }],
+                        "display-2xl": ["96px", { "lineHeight": "100%", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+                        "label-bold": ["14px", { "lineHeight": "120%", "fontWeight": "700" }],
+                        "body-md": ["18px", { "lineHeight": "150%", "fontWeight": "500" }],
+                        "headline-lg": ["48px", { "lineHeight": "110%", "letterSpacing": "-0.02em", "fontWeight": "900" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-screen w-full flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-primary-container border-r-4 border-on-surface shadow-[8px_0px_0px_0px_rgba(0,0,0,1)] p-base space-y-gutter z-50">
+<div class="flex items-center gap-4 px-4 py-6 border-b-4 border-on-surface">
+<div class="w-12 h-12 bg-secondary border-4 border-on-surface rounded-full flex items-center justify-center overflow-hidden shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+<span class="material-symbols-outlined text-on-secondary" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-[20px]">Admin Panel</h2>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Manage Portfolio</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-4 px-2">
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface hover:bg-surface-variant hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Overview
+            </a>
+<a class="flex items-center gap-4 p-3 rounded-lg bg-secondary text-on-secondary border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">work</span>
+                Manage Projects
+            </a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface hover:bg-surface-variant hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">verified</span>
+                Certificates
+            </a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface hover:bg-surface-variant hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">psychology</span>
+                Skills
+            </a>
+<a class="flex items-center gap-4 p-3 rounded-lg text-on-surface hover:bg-surface-variant hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-none transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-auto pt-4 border-t-4 border-on-surface px-2">
+<button class="w-full flex items-center justify-center gap-2 p-4 bg-tertiary-fixed text-on-surface border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-2 active:translate-y-2 active:shadow-none transition-all font-label-bold text-label-bold uppercase">
+<span class="material-symbols-outlined">add</span>
+                Add New Entry
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-64 h-screen overflow-y-auto bg-surface-container-high p-margin-mobile md:p-margin-desktop">
+<header class="mb-12">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Dashboard Operations</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your brutalist portfolio content with high energy.</p>
+</header>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-12">
+<!-- Projects Manager -->
+<section class="flex flex-col gap-6">
+<div class="border-4 border-on-surface bg-surface rounded-xl overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+<!-- Title Bar -->
+<div class="bg-on-surface p-3 flex items-center gap-2 border-b-4 border-on-surface">
+<div class="w-4 h-4 rounded-full bg-error border-2 border-on-surface"></div>
+<div class="w-4 h-4 rounded-full bg-primary-container border-2 border-on-surface"></div>
+<div class="w-4 h-4 rounded-full bg-secondary border-2 border-on-surface"></div>
+<span class="ml-4 font-label-bold text-label-bold text-surface">Projects_Manager.exe</span>
+</div>
+<!-- Content Body -->
+<div class="p-6 md:p-8 bg-tertiary-fixed space-y-6">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Add New Project</h3>
+<form class="space-y-4">
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-surface uppercase">Project Title</label>
+<input class="w-full p-4 border-4 border-on-surface bg-surface text-on-surface font-body-md shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:border-tertiary focus:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all" placeholder="e.g. Acid Wave Portfolio" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-surface uppercase">Description</label>
+<textarea class="w-full p-4 border-4 border-on-surface bg-surface text-on-surface font-body-md shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:border-tertiary focus:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all resize-none" placeholder="Describe the chaos..." rows="3"></textarea>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-surface uppercase">Project URL</label>
+<input class="w-full p-4 border-4 border-on-surface bg-surface text-on-surface font-body-md shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:border-tertiary focus:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all" placeholder="https://" type="url"/>
+</div>
+<button class="mt-4 px-8 py-4 bg-primary-container text-on-surface border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-2 active:translate-y-2 active:shadow-none transition-all font-label-bold text-label-bold uppercase w-full" type="button">
+                                Submit Project
+                            </button>
+</form>
+</div>
+</div>
+<!-- Projects List -->
+<div class="space-y-4">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Current Projects</h3>
+<div class="flex items-center justify-between p-4 bg-surface border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-lg">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary border-4 border-on-surface flex items-center justify-center -rotate-6">
+<span class="material-symbols-outlined text-on-secondary">star</span>
+</div>
+<div>
+<h4 class="font-label-bold text-label-bold text-on-surface text-[18px]">Neon E-commerce</h4>
+<a class="font-body-md text-body-md text-secondary underline decoration-2" href="#">View Live</a>
+</div>
+</div>
+<button class="p-2 bg-error text-on-error border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none transition-all">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rounded-lg">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-container border-4 border-on-surface flex items-center justify-center rotate-3">
+<span class="material-symbols-outlined text-on-surface">rocket_launch</span>
+</div>
+<div>
+<h4 class="font-label-bold text-label-bold text-on-surface text-[18px]">Brutalist Blog</h4>
+<a class="font-body-md text-body-md text-secondary underline decoration-2" href="#">View Live</a>
+</div>
+</div>
+<button class="p-2 bg-error text-on-error border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none transition-all">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Secondary Column -->
+<section class="flex flex-col gap-12">
+<!-- Certificates Manager -->
+<div class="border-4 border-on-surface bg-surface rounded-xl overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rotate-1 hover:rotate-0 transition-transform">
+<div class="bg-on-surface p-3 flex items-center gap-2 border-b-4 border-on-surface">
+<div class="w-4 h-4 rounded-full bg-error border-2 border-on-surface"></div>
+<div class="w-4 h-4 rounded-full bg-primary-container border-2 border-on-surface"></div>
+<div class="w-4 h-4 rounded-full bg-secondary border-2 border-on-surface"></div>
+<span class="ml-4 font-label-bold text-label-bold text-surface">Certificates.exe</span>
+</div>
+<div class="p-6 md:p-8 bg-secondary space-y-6">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-secondary">Upload Certificate</h3>
+<div class="border-4 border-dashed border-on-surface bg-surface p-8 text-center cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-on-surface text-6xl mb-4">upload_file</span>
+<p class="font-label-bold text-label-bold text-on-surface uppercase">Drag &amp; Drop Image Here</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">or click to browse</p>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-secondary uppercase">Certificate Name</label>
+<input class="w-full p-4 border-4 border-on-surface bg-surface text-on-surface font-body-md shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:border-tertiary" type="text"/>
+</div>
+<button class="px-8 py-4 bg-tertiary-fixed text-on-surface border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-2 active:translate-y-2 active:shadow-none transition-all font-label-bold text-label-bold uppercase w-full" type="button">
+                            Save Certificate
+                        </button>
+</div>
+</div>
+<!-- Skills Manager -->
+<div class="border-4 border-on-surface bg-surface rounded-xl overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] -rotate-1 hover:rotate-0 transition-transform">
+<div class="bg-on-surface p-3 flex items-center gap-2 border-b-4 border-on-surface">
+<div class="w-4 h-4 rounded-full bg-error border-2 border-on-surface"></div>
+<div class="w-4 h-4 rounded-full bg-primary-container border-2 border-on-surface"></div>
+<div class="w-4 h-4 rounded-full bg-secondary border-2 border-on-surface"></div>
+<span class="ml-4 font-label-bold text-label-bold text-surface">Skills_DB.exe</span>
+</div>
+<div class="p-6 md:p-8 bg-surface-bright space-y-6">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Add Skill Tag</h3>
+<div class="flex gap-4">
+<input class="flex-1 p-4 border-4 border-on-surface bg-surface text-on-surface font-body-md shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:border-tertiary" placeholder="e.g. React.js" type="text"/>
+<button class="px-6 py-4 bg-primary-container text-on-surface border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-2 active:translate-y-2 active:shadow-none transition-all font-label-bold text-label-bold uppercase" type="button">
+                                Add
+                            </button>
+</div>
+<div class="flex flex-wrap gap-4 mt-6">
+<span class="inline-flex items-center gap-2 px-4 py-2 bg-tertiary-fixed border-4 border-on-surface rounded-full font-label-bold text-label-bold text-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                                UI/UX Design <button class="hover:text-error material-symbols-outlined text-[18px]">close</button>
+</span>
+<span class="inline-flex items-center gap-2 px-4 py-2 bg-secondary border-4 border-on-surface rounded-full font-label-bold text-label-bold text-on-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                                Tailwind CSS <button class="hover:text-error material-symbols-outlined text-[18px]">close</button>
+</span>
+<span class="inline-flex items-center gap-2 px-4 py-2 bg-primary-container border-4 border-on-surface rounded-full font-label-bold text-label-bold text-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                                JavaScript <button class="hover:text-error material-symbols-outlined text-[18px]">close</button>
+</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

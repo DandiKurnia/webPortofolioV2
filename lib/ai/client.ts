@@ -3,17 +3,19 @@ type ChatMessage = { role: "system" | "user" | "assistant"; content: string };
 const HERMES_BASE_URL = process.env.HERMES_BASE_URL || "http://10.254.200.211:8643/v1";
 const HERMES_MODEL = process.env.HERMES_MODEL || "claude";
 const HERMES_API_KEY = process.env.HERMES_API_KEY || "";
-const TIMEOUT_MS = 30_000;
-const MAX_TOKENS = 200;
+const TIMEOUT_MS = 60_000;
+const MAX_TOKENS = 500;
 const TEMPERATURE = 0.5;
 
 function buildPayload(
   systemPrompt: string,
   userMessage: string,
-  stream: boolean
+  stream: boolean,
+  history: ChatMessage[] = []
 ) {
   const messages: ChatMessage[] = [
     { role: "system", content: systemPrompt },
+    ...history,
     { role: "user", content: userMessage },
   ];
   return {
@@ -39,13 +41,11 @@ async function postWithRetry(body: object, signal: AbortSignal): Promise<Respons
 
   try {
     const res = await fetch(url, init);
-    // No retry on 4xx — those are client errors, retrying won't help.
     if (!res.ok && res.status >= 500) {
       throw new Error(`Hermes upstream ${res.status}`);
     }
     return res;
-  } catch (err) {
-    // Single retry on network/5xx error
+  } catch {
     const res = await fetch(url, init);
     if (!res.ok) {
       throw new Error(`Hermes failed after retry: ${res.status}`);
@@ -56,13 +56,14 @@ async function postWithRetry(body: object, signal: AbortSignal): Promise<Respons
 
 export async function askHermes(
   systemPrompt: string,
-  userMessage: string
+  userMessage: string,
+  history: ChatMessage[] = []
 ): Promise<string> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
   try {
     const res = await postWithRetry(
-      buildPayload(systemPrompt, userMessage, false),
+      buildPayload(systemPrompt, userMessage, false, history),
       controller.signal
     );
     if (!res.ok) {
@@ -81,13 +82,14 @@ export async function askHermes(
 
 export async function streamHermes(
   systemPrompt: string,
-  userMessage: string
+  userMessage: string,
+  history: ChatMessage[] = []
 ): Promise<{ stream: ReadableStream<Uint8Array>; full: Promise<string> }> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
   const upstream = await postWithRetry(
-    buildPayload(systemPrompt, userMessage, true),
+    buildPayload(systemPrompt, userMessage, true, history),
     controller.signal
   );
 
@@ -95,6 +97,7 @@ export async function streamHermes(
     clearTimeout(timer);
     throw new Error(`Hermes stream failed: ${upstream.status}`);
   }
+  clearTimeout(timer);
 
   const decoder = new TextDecoder();
   const encoder = new TextEncoder();

@@ -1,24 +1,26 @@
 import { z } from "zod";
-import { streamHermes } from "@/lib/hermes-client";
+import { streamHermes, askHermes } from "@/lib/ai/client";
+import { checkRateLimit, getCached, setCached } from "@/lib/ai/cache";
 import {
-  checkRateLimit,
-  getCached,
-  setCached,
-} from "@/lib/redis-cache";
-import {
+  buildSystemPrompt,
   RATE_LIMITED_MSG,
   REFUSAL_EN,
   REFUSAL_ID,
-  SYSTEM_PROMPT,
   TOO_LONG_ID,
-} from "@/lib/system-prompt";
+} from "@/lib/ai/prompt";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const HistoryItemSchema = z.object({
+  role: z.enum(["user", "assistant"]),
+  content: z.string().max(1000),
+});
+
 const BodySchema = z.object({
   message: z.string().min(1).max(300),
   stream: z.boolean().optional(),
+  history: z.array(HistoryItemSchema).max(10).optional(),
 });
 
 const BLOCKED_PATTERNS: RegExp[] = [
@@ -122,11 +124,14 @@ export async function POST(request: Request) {
     return jsonResponse({ reply: cached, cached: true });
   }
 
+  const history = parsed.history ?? [];
+
   // [6] Hermes
   try {
+    const systemPrompt = await buildSystemPrompt();
+
     if (wantsStream) {
-      const { stream, full } = await streamHermes(SYSTEM_PROMPT, message);
-      // Persist cache after stream completes (don't block response)
+      const { stream, full } = await streamHermes(systemPrompt, message, history);
       full
         .then((text) => {
           if (text) void setCached(message, text);
@@ -135,9 +140,7 @@ export async function POST(request: Request) {
       return sseResponse(stream);
     }
 
-    // Non-stream fallback
-    const { askHermes } = await import("@/lib/hermes-client");
-    const reply = await askHermes(SYSTEM_PROMPT, message);
+    const reply = await askHermes(systemPrompt, message, history);
     void setCached(message, reply);
     return jsonResponse({ reply, cached: false });
   } catch (err) {

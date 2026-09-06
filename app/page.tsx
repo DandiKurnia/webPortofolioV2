@@ -4,7 +4,7 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Certifications from "@/components/Certifications";
 import Footer from "@/components/Footer";
-import ChatWidget from "@/components/ChatWidget";
+import ChatWidget from "@/components/chat/ChatWidget";
 
 export default function Home() {
   return (

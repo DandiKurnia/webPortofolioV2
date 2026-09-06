@@ -98,11 +98,17 @@ export default function ChatWidget() {
     const controller = new AbortController();
     abortRef.current = controller;
 
+    const MAX_HISTORY = 10;
+    const history = messages
+      .filter((m) => m.id !== "welcome")
+      .slice(-MAX_HISTORY)
+      .map((m) => ({ role: m.role, content: m.content }));
+
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, stream: true }),
+        body: JSON.stringify({ message: text, stream: true, history }),
         signal: controller.signal,
       });
 

@@ -1,0 +1,216 @@
+{
+  "main": {
+    "id": "0c5132f2306cdf36",
+    "type": "split",
+    "children": [
+      {
+        "id": "046bfae94edc7792",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "60412d6cfd112e67",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Welcome.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Welcome"
+            }
+          }
+        ]
+      },
+      {
+        "id": "69f112db4685f716",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "39083b80a78f9409",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5fb6a6b6b802b394",
+    "type": "split",
+    "children": [
+      {
+        "id": "a2b07b15073be3d9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3fa9ca6ea0e64a6a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "5fe47a7c039174fa",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "04b9e7b25914b791",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e2820584031bc3b7",
+    "type": "split",
+    "children": [
+      {
+        "id": "063a5552ef373621",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dac24b18259e6194",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "eaeabb362a37aced",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "98f402c20e7e0b85",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "5d860cbf60b09e73",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "10e2972913a0f398",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "39083b80a78f9409",
+  "lastOpenFiles": [
+    "Project Analysis/2026-08-01 - Portfolio PDF Feature.md",
+    "Project Analysis/Web Portfolio - Tech Stack Analysis.md",
+    "Project Analysis/Web Portfolio - Tech Stack Analysis.md.tmp.21112.a4442d5eb5c4",
+    "Project Analysis/Web Portfolio - Tech Stack Analysis.md.tmp.21112.9816c7fc5e03",
+    "Project Analysis/2026-08-01 - Portfolio PDF Feature.md.tmp.21112.835b4367cf58",
+    "create a link.md",
+    "Web Portfolio.md",
+    "Welcome.md",
+    "Web Portfolio.md.tmp.21112.6d8272888da2",
+    "Project Analysis/Web Portfolio - Tech Stack Analysis.md.tmp.21112.9f029d0d4a62",
+    "Project Analysis/Web Portfolio - Tech Stack Analysis.md.tmp.21112.174827b22ff3",
+    "Project Analysis"
+  ]
+}

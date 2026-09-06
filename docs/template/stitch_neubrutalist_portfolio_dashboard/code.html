@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brutalfolio - Public Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#626200",
+                        "on-tertiary-fixed-variant": "#8c0058",
+                        "on-surface-variant": "#484831",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffd8e6",
+                        "tertiary": "#ac2471",
+                        "inverse-primary": "#cdcd00",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#303030",
+                        "surface-bright": "#f9f9f9",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-dim": "#dadada",
+                        "on-primary-fixed": "#1d1d00",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#ffff00",
+                        "on-surface": "#1b1b1b",
+                        "outline": "#79785f",
+                        "secondary": "#0058be",
+                        "primary-fixed": "#eaea00",
+                        "surface": "#f9f9f9",
+                        "primary-fixed-dim": "#cdcd00",
+                        "on-primary-container": "#757500",
+                        "surface-variant": "#e2e2e2",
+                        "on-background": "#1b1b1b",
+                        "on-primary-fixed-variant": "#494900",
+                        "on-tertiary-fixed": "#3d0024",
+                        "outline-variant": "#cac8aa",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-secondary-container": "#fefcff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#c43984",
+                        "secondary-container": "#2170e4",
+                        "surface-container-low": "#f3f3f3",
+                        "on-secondary-fixed": "#001a42",
+                        "on-secondary-fixed-variant": "#004395",
+                        "tertiary-fixed-dim": "#ffb0d0",
+                        "tertiary-container": "#fff4f6",
+                        "background": "#f9f9f9",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#626200",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        
+                        "neon-yellow": "#d7ff00",
+                        "neon-blue": "#3b82f6",
+                        "neon-pink": "#ec4899",
+                        "pure-black": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "none": "0"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "shadow-offset": "8px",
+                        "border-width": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat", "sans-serif"],
+                        "display-2xl": ["Montserrat", "sans-serif"],
+                        "label-bold": ["Space Mono", "monospace"],
+                        "body-md": ["Space Grotesk", "sans-serif"],
+                        "headline-lg": ["Montserrat", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", { "lineHeight": "110%", "fontWeight": "900" }],
+                        "display-2xl": ["96px", { "lineHeight": "100%", "letterSpacing": "-0.04em", "fontWeight": "900" }],
+                        "label-bold": ["14px", { "lineHeight": "120%", "fontWeight": "700" }],
+                        "body-md": ["18px", { "lineHeight": "150%", "fontWeight": "500" }],
+                        "headline-lg": ["48px", { "lineHeight": "110%", "letterSpacing": "-0.02em", "fontWeight": "900" }]
+                    },
+                    "boxShadow": {
+                        "neubrutalism": "8px 8px 0px 0px rgba(0,0,0,1)",
+                        "neubrutalism-sm": "4px 4px 0px 0px rgba(0,0,0,1)",
+                        "neubrutalism-hover": "4px 4px 0px 0px rgba(0,0,0,1)",
+                        "neubrutalism-active": "0px 0px 0px 0px rgba(0,0,0,1)"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.surface'); color: theme('colors.pure-black'); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1; }
+        
+        /* Neubrutalist Base Styles */
+        .brutal-border { border: 4px solid #000; }
+        .brutal-shadow { box-shadow: 8px 8px 0px 0px #000; transition: all 0.2s ease; }
+        .brutal-shadow:hover { box-shadow: 4px 4px 0px 0px #000; transform: translate(4px, 4px); }
+        .brutal-shadow:active { box-shadow: 0px 0px 0px 0px #000; transform: translate(8px, 8px); }
+        
+        .brutal-shadow-sm { box-shadow: 4px 4px 0px 0px #000; transition: all 0.2s ease; }
+        .brutal-shadow-sm:hover { box-shadow: 2px 2px 0px 0px #000; transform: translate(2px, 2px); }
+        .brutal-shadow-sm:active { box-shadow: 0px 0px 0px 0px #000; transform: translate(4px, 4px); }
+
+        .computer-window-header {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background-color: #000;
+            border-bottom: 4px solid #000;
+            gap: 6px;
+        }
+        .window-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #000; }
+        .dot-red { background-color: #FF5F56; }
+        .dot-yellow { background-color: #FFBD2E; }
+        .dot-green { background-color: #27C93F; }
+
+        /* Quirky Decorations */
+        .decoration-squiggle {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body class="font-body-md bg-surface text-pure-black overflow-x-hidden selection:bg-neon-pink selection:text-white">
+<!-- Shared Component: TopNavBar -->
+<nav class="flex justify-between items-center px-margin-desktop py-base w-full sticky top-0 z-50 bg-surface border-b-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-black text-on-surface">
+            BRUTALFOLIO
+        </div>
+<div class="hidden md:flex items-center gap-8 font-label-bold text-label-bold">
+<a class="text-secondary underline decoration-4 underline-offset-8" href="#">Projects</a>
+<a class="text-on-surface hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all" href="#">Skills</a>
+<a class="text-on-surface hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all" href="#">Blog</a>
+<a class="text-on-surface hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all" href="#">Dashboard</a>
+</div>
+<button class="bg-primary-container text-pure-black font-label-bold px-6 py-3 brutal-border brutal-shadow hidden md:flex items-center gap-2">
+            Download CV
+            <span class="material-symbols-outlined">download</span>
+</button>
+<button class="md:hidden p-2 brutal-border bg-surface brutal-shadow-sm">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+<main class="max-w-[1440px] mx-auto overflow-hidden">
+<!-- Hero Section -->
+<section class="relative min-h-[819px] flex flex-col md:flex-row items-center justify-center p-margin-desktop gap-gutter bg-neon-yellow">
+<!-- Decorative Elements -->
+<svg class="absolute top-20 left-10 w-24 h-24 text-pure-black animate-pulse" fill="currentColor" viewbox="0 0 100 100">
+<path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z"></path>
+</svg>
+<svg class="absolute bottom-20 right-10 w-32 h-32 text-neon-pink" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" viewbox="0 0 100 100">
+<path d="M10 50 Q 25 10 50 50 T 90 50"></path>
+</svg>
+<div class="flex-1 z-10 flex flex-col items-start gap-8">
+<div class="inline-block bg-white brutal-border px-4 py-2 rotate-[-3deg] brutal-shadow-sm font-label-bold text-lg mb-4">
+                    Creative Developer &amp; Designer
+                </div>
+<h1 class="font-display-2xl text-display-2xl uppercase tracking-tighter max-w-4xl mix-blend-difference text-white">
+                    HELLO, <br/> I AM <span class="bg-neon-blue px-4 text-pure-black inline-block -rotate-2">ALEX.</span>
+</h1>
+<p class="font-body-md text-2xl max-w-2xl bg-white p-4 brutal-border brutal-shadow-sm mt-4">
+                    Building unapologetic digital experiences that break the mold and command attention. No boring grids allowed.
+                </p>
+<div class="flex gap-4 mt-8">
+<button class="bg-neon-pink text-white font-label-bold text-xl px-8 py-4 brutal-border brutal-shadow uppercase">
+                        Let's Talk
+                    </button>
+<button class="bg-white text-pure-black font-label-bold text-xl px-8 py-4 brutal-border brutal-shadow uppercase">
+                        View Work
+                    </button>
+</div>
+</div>
+<div class="flex-1 z-10 relative mt-16 md:mt-0">
+<!-- Computer Window Pattern -->
+<div class="bg-white brutal-border brutal-shadow max-w-md ml-auto rotate-[2deg]">
+<div class="computer-window-header">
+<div class="window-dot dot-red"></div>
+<div class="window-dot dot-yellow"></div>
+<div class="window-dot dot-green"></div>
+<span class="font-label-bold text-white text-xs ml-4">contact.exe</span>
+</div>
+<div class="p-8 flex flex-col items-center justify-center bg-surface-container-lowest gap-6">
+<img alt="Profile Picture" class="w-48 h-48 brutal-border rounded-full object-cover brutal-shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIKp8twVuUwEOYRUK5nlXI0pEkIG0a9vzkF6cTc6PbBEZ8l1-9SMLe1EtBPqKhnKMN6CxpieVejd4y65Bo9cutrT7IQk_eLIOej5q5E7UkF0o48yAPSU_by9MU__zwqAr37Qs9AVs5KWmmGo8jAdkL7BiccwbXsSYMwU_eTHiyZCN5Hhll3OB4dZoa3kT2QYP-mxJVuJMKm33C8zgafstJKUQ7mTndoMh0cOkZ241ua2wqUwIslUW5BatTJWu0MqoHl-wo4USvhvo"/>
+<div class="text-center">
+<h3 class="font-headline-lg-mobile text-2xl uppercase mb-2">Hire Me.</h3>
+<a class="font-label-bold text-lg bg-neon-yellow px-4 py-2 brutal-border inline-block hover:bg-neon-blue hover:text-white transition-colors" href="mailto:email@example.com">email@example.com</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section class="py-24 px-margin-desktop bg-surface border-y-4 border-pure-black relative overflow-hidden">
+<!-- Background pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle, #000 2px, transparent 2px); background-size: 32px 32px;"></div>
+<div class="flex flex-col md:flex-row gap-gutter justify-between items-end mb-16 relative z-10">
+<h2 class="font-headline-lg text-headline-lg uppercase bg-neon-pink text-white inline-block px-6 py-2 brutal-border -rotate-2">
+                    Tech Arsenal
+                </h2>
+<p class="font-body-md text-xl max-w-md bg-white p-4 brutal-border brutal-shadow-sm rotate-1">
+                    Tools I use to create chaos and order on the web.
+                </p>
+</div>
+<div class="w-full overflow-hidden relative z-10 py-4 -mx-4 px-4">
+<div class="flex w-max animate-marquee">
+<!-- Group 1 -->
+<div class="flex gap-gutter shrink-0 pr-gutter">
+<div class="bg-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">code</span>
+<span class="font-label-bold text-lg uppercase">React</span>
+</div>
+<div class="bg-neon-blue text-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform rotate-1 w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">css</span>
+<span class="font-label-bold text-lg uppercase">Tailwind</span>
+</div>
+<div class="bg-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform -rotate-2 w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">terminal</span>
+<span class="font-label-bold text-lg uppercase">Node.js</span>
+</div>
+<div class="bg-neon-yellow brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">design_services</span>
+<span class="font-label-bold text-lg uppercase">Figma</span>
+</div>
+<div class="bg-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform rotate-2 w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">database</span>
+<span class="font-label-bold text-lg uppercase">MongoDB</span>
+</div>
+<div class="bg-pure-black text-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">api</span>
+<span class="font-label-bold text-lg uppercase">GraphQL</span>
+</div>
+<div class="bg-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform -rotate-1 w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">animation</span>
+<span class="font-label-bold text-lg uppercase">Framer</span>
+</div>
+<div class="bg-neon-pink text-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform rotate-1 w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">deployed_code</span>
+<span class="font-label-bold text-lg uppercase">Docker</span>
+</div>
+</div>
+<!-- Group 2 (Duplicate for infinite loop) -->
+<div class="flex gap-gutter shrink-0 pr-gutter">
+<div class="bg-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">code</span>
+<span class="font-label-bold text-lg uppercase">React</span>
+</div>
+<div class="bg-neon-blue text-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform rotate-1 w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">css</span>
+<span class="font-label-bold text-lg uppercase">Tailwind</span>
+</div>
+<div class="bg-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform -rotate-2 w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">terminal</span>
+<span class="font-label-bold text-lg uppercase">Node.js</span>
+</div>
+<div class="bg-neon-yellow brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">design_services</span>
+<span class="font-label-bold text-lg uppercase">Figma</span>
+</div>
+<div class="bg-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform rotate-2 w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">database</span>
+<span class="font-label-bold text-lg uppercase">MongoDB</span>
+</div>
+<div class="bg-pure-black text-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">api</span>
+<span class="font-label-bold text-lg uppercase">GraphQL</span>
+</div>
+<div class="bg-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform -rotate-1 w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">animation</span>
+<span class="font-label-bold text-lg uppercase">Framer</span>
+</div>
+<div class="bg-neon-pink text-white brutal-border p-6 flex flex-col items-center justify-center gap-4 brutal-shadow-sm hover:-translate-y-2 transition-transform rotate-1 w-64 shrink-0">
+<span class="material-symbols-outlined text-5xl">deployed_code</span>
+<span class="font-label-bold text-lg uppercase">Docker</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section class="py-24 px-margin-desktop bg-[#B8E6FE] relative">
+<div class="mb-16 flex items-center gap-6">
+<h2 class="font-display-2xl text-6xl md:text-8xl uppercase tracking-tighter bg-white brutal-border inline-block px-4 pt-2 -rotate-2">
+                    Selected Work
+                </h2>
+<svg class="w-24 h-24 text-neon-pink hidden md:block" fill="currentColor" viewbox="0 0 100 100">
+<polygon points="50,15 61,35 85,35 66,50 73,75 50,60 27,75 34,50 15,35 39,35"></polygon>
+</svg>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+<!-- Project Card 1 -->
+<div class="bg-white brutal-border brutal-shadow flex flex-col group">
+<div class="computer-window-header">
+<div class="window-dot dot-red"></div>
+<div class="window-dot dot-yellow"></div>
+<div class="window-dot dot-green"></div>
+<span class="font-label-bold text-white text-xs ml-4">project_01.exe</span>
+</div>
+<div class="p-4 border-b-4 border-pure-black bg-neon-yellow">
+<img alt="Code on screen" class="w-full h-64 object-cover brutal-border" data-alt="A brightly lit close-up of a computer monitor displaying lines of colorful code against a dark background, reflecting a modern software development environment. The lighting is high-contrast, emphasizing the vibrant syntax highlighting of the text. The overall aesthetic aligns with a neubrutalist digital design style, raw and unapologetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6PA1Tb54bm-pmCGq3MVcP011j5jBAFIvguCJD-_edXTCR4RVj2-vA6LVmTSkDa5s0tVCzv7uDjqfWYpwmr7zm0J8q1SCC30tU_-mEBIx_-8BBaKEzFunPtRDRerjhtvw2oOQkTY8pH9SEvjvF7iYjbeF6Z7W65wM1FA01HfyKBdLT_gCnIfyThAN3e-ekmuU4_nPjDPBK67SjxkJnPsaVrxGD0W_smpAjIhmsvfCi_snizEgY49whabN9EiWSGmNSr3FI0gm81NE"/>
+</div>
+<div class="p-8 flex flex-col gap-4 bg-white">
+<div class="flex gap-2 flex-wrap mb-2">
+<span class="font-label-bold text-xs uppercase bg-surface-container-highest px-2 py-1 brutal-border">React</span>
+<span class="font-label-bold text-xs uppercase bg-surface-container-highest px-2 py-1 brutal-border">Three.js</span>
+</div>
+<h3 class="font-headline-lg-mobile uppercase group-hover:text-neon-blue transition-colors">E-Commerce Redefined</h3>
+<p class="font-body-md text-on-surface-variant">A fully immersive 3D shopping experience that ignores conventional grid layouts for a chaotic but functional checkout flow.</p>
+<a class="mt-4 font-label-bold uppercase flex items-center gap-2 w-max border-b-4 border-pure-black pb-1 hover:text-neon-pink hover:border-neon-pink transition-colors" href="#">
+                            View Case Study <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="bg-white brutal-border brutal-shadow flex flex-col md:mt-16 group">
+<div class="computer-window-header">
+<div class="window-dot dot-red"></div>
+<div class="window-dot dot-yellow"></div>
+<div class="window-dot dot-green"></div>
+<span class="font-label-bold text-white text-xs ml-4">fintech_app.dmg</span>
+</div>
+<div class="p-4 border-b-4 border-pure-black bg-neon-pink">
+<img alt="Mobile app design" class="w-full h-64 object-cover brutal-border" data-alt="A dynamic, angled shot of several mobile smartphone screens displaying a bold, high-contrast financial application interface. The backgrounds are vibrant neons against stark whites and deep blacks, embodying a neubrutalist style. The lighting is flat and illustrative, removing realistic shadows in favor of hard, geometric shapes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUqrvQz5-XAA6LbX27llrCzljn3MbmWwpwYIhl_9KtQYH7uOXTiOxj4p1tP0KxOMCBxEXFzq9MBv-vQgsPSL6cmPbIzE-p_Ht7zrPZxodjLsIOC13XG8pKhpFmeUJ9qnH4b_3pUMAiYb1bfrAqac2-tZKlT9KcYz69CQeG37v2w1asyhpAVO7Vxk-EQcxPM6HfIHXwZdfyte8J71WA-TqVsUbvB_33qu3JrF1xYk21z5ZDmobT31ANA5zWr1ImowYwnsU2WLK9AbI"/>
+</div>
+<div class="p-8 flex flex-col gap-4 bg-white">
+<div class="flex gap-2 flex-wrap mb-2">
+<span class="font-label-bold text-xs uppercase bg-surface-container-highest px-2 py-1 brutal-border">React Native</span>
+<span class="font-label-bold text-xs uppercase bg-surface-container-highest px-2 py-1 brutal-border">Stripe</span>
+</div>
+<h3 class="font-headline-lg-mobile uppercase group-hover:text-neon-blue transition-colors">Punk Banking</h3>
+<p class="font-body-md text-on-surface-variant">A fintech mobile app designed for Gen-Z, featuring brutalist typography, massive buttons, and gamified saving mechanisms.</p>
+<a class="mt-4 font-label-bold uppercase flex items-center gap-2 w-max border-b-4 border-pure-black pb-1 hover:text-neon-pink hover:border-neon-pink transition-colors" href="#">
+                            View Case Study <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Certificates Section -->
+<section class="py-24 bg-surface border-y-4 border-pure-black overflow-hidden flex flex-col items-center">
+<h2 class="font-headline-lg uppercase bg-white inline-block px-8 py-4 brutal-border brutal-shadow mb-16 text-center z-10">
+                Wall of Validation
+            </h2>
+<!-- Horizontal Scroll Container -->
+<div class="w-full overflow-x-auto pb-8 hide-scrollbar px-margin-desktop relative">
+<!-- Decorative dashed line behind -->
+<div class="absolute top-1/2 left-0 w-[200%] h-1 border-t-4 border-dashed border-pure-black -translate-y-1/2 z-0"></div>
+<div class="flex gap-12 w-max relative z-10 py-4">
+<!-- Cert 1 -->
+<div class="bg-white p-6 brutal-border brutal-shadow w-80 shrink-0 rotate-[-2deg] hover:rotate-0 transition-transform bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2ZmZiIvPgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyIiBmaWxsPSIjZWVlIi8+Cjwvc3ZnPg==')]">
+<div class="border-2 border-pure-black p-4 h-full flex flex-col justify-between bg-white bg-opacity-90">
+<div>
+<span class="material-symbols-outlined text-4xl mb-4 text-neon-blue">verified</span>
+<h4 class="font-headline-lg-mobile text-xl uppercase mb-2">Advanced React Patterns</h4>
+<p class="font-label-bold text-sm text-on-surface-variant">Frontend Masters</p>
+</div>
+<div class="mt-8 pt-4 border-t-2 border-pure-black flex justify-between items-center">
+<span class="font-label-bold text-xs">2023</span>
+<span class="bg-pure-black text-white px-2 py-1 font-label-bold text-xs">VERIFIED</span>
+</div>
+</div>
+</div>
+<!-- Cert 2 -->
+<div class="bg-neon-yellow p-6 brutal-border brutal-shadow w-80 shrink-0 rotate-[3deg] hover:rotate-0 transition-transform">
+<div class="border-2 border-pure-black p-4 h-full flex flex-col justify-between bg-white">
+<div>
+<span class="material-symbols-outlined text-4xl mb-4 text-neon-pink">verified</span>
+<h4 class="font-headline-lg-mobile text-xl uppercase mb-2">UI/UX Micro-Interactions</h4>
+<p class="font-label-bold text-sm text-on-surface-variant">Awwwards Academy</p>
+</div>
+<div class="mt-8 pt-4 border-t-2 border-pure-black flex justify-between items-center">
+<span class="font-label-bold text-xs">2022</span>
+<span class="bg-pure-black text-white px-2 py-1 font-label-bold text-xs">VERIFIED</span>
+</div>
+</div>
+</div>
+<!-- Cert 3 -->
+<div class="bg-white p-6 brutal-border brutal-shadow w-80 shrink-0 rotate-[-1deg] hover:rotate-0 transition-transform">
+<div class="border-2 border-pure-black p-4 h-full flex flex-col justify-between bg-white">
+<div>
+<span class="material-symbols-outlined text-4xl mb-4 text-pure-black">verified</span>
+<h4 class="font-headline-lg-mobile text-xl uppercase mb-2">Fullstack Serverless</h4>
+<p class="font-label-bold text-sm text-on-surface-variant">AWS Certification</p>
+</div>
+<div class="mt-8 pt-4 border-t-2 border-pure-black flex justify-between items-center">
+<span class="font-label-bold text-xs">2024</span>
+<span class="bg-pure-black text-white px-2 py-1 font-label-bold text-xs">VERIFIED</span>
+</div>
+</div>
+</div>
+<!-- Cert 4 -->
+<div class="bg-neon-pink p-6 brutal-border brutal-shadow w-80 shrink-0 rotate-[2deg] hover:rotate-0 transition-transform">
+<div class="border-2 border-pure-black p-4 h-full flex flex-col justify-between bg-white">
+<div>
+<span class="material-symbols-outlined text-4xl mb-4 text-neon-blue">verified</span>
+<h4 class="font-headline-lg-mobile text-xl uppercase mb-2">WebGL Fundamentals</h4>
+<p class="font-label-bold text-sm text-on-surface-variant">ThreeJS Journey</p>
+</div>
+<div class="mt-8 pt-4 border-t-2 border-pure-black flex justify-between items-center">
+<span class="font-label-bold text-xs">2023</span>
+<span class="bg-pure-black text-white px-2 py-1 font-label-bold text-xs">VERIFIED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style>
+                .hide-scrollbar::-webkit-scrollbar { display: none; }
+                .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+            </style>
+</section>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="flex flex-col md:flex-row justify-between items-start gap-gutter w-full p-margin-desktop bg-on-surface dark:bg-surface-container-lowest border-t-4 border-on-surface">
+<div class="flex flex-col gap-6 max-w-lg">
+<div class="font-display-2xl text-display-2xl text-primary-container leading-none uppercase -ml-2">
+                Let's Make <br/> Something <br/> <span class="text-neon-pink">Loud.</span>
+</div>
+<p class="font-body-md text-surface dark:text-on-surface text-xl mt-4">
+                Available for freelance opportunities. Let's break some design rules together.
+            </p>
+<a class="font-headline-lg-mobile text-3xl text-surface bg-pure-black border-4 border-surface inline-block px-6 py-4 mt-4 w-max hover:bg-neon-blue hover:text-pure-black hover:border-pure-black transition-all group" href="mailto:hello@brutalfolio.com">
+                hello@brutalfolio.com
+                <span class="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform inline-block">arrow_forward</span>
+</a>
+</div>
+<div class="flex flex-col gap-12 mt-12 md:mt-0 text-right w-full md:w-auto">
+<div class="flex flex-col gap-4">
+<h5 class="font-label-bold text-surface dark:text-on-surface text-sm uppercase tracking-widest opacity-50">Socials</h5>
+<ul class="flex flex-col gap-2 font-headline-lg-mobile text-headline-lg-mobile">
+<li><a class="text-surface dark:text-on-surface hover:text-tertiary-fixed transition-colors" href="#">GitHub</a></li>
+<li><a class="text-surface dark:text-on-surface hover:text-tertiary-fixed transition-colors" href="#">LinkedIn</a></li>
+<li><a class="text-surface dark:text-on-surface hover:text-tertiary-fixed transition-colors" href="#">Twitter</a></li>
+<li><a class="text-surface dark:text-on-surface hover:text-tertiary-fixed transition-colors" href="#">Dribbble</a></li>
+</ul>
+</div>
+<div class="font-label-bold text-surface opacity-70 mt-auto">
+                © 2024 NEUBRUTALIST. STUDIO
+            </div>
+</div>
+</footer>
+</body></html>
