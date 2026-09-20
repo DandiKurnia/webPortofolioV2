@@ -14,12 +14,20 @@ function buildPayload(
   history: ChatMessage[] = []
 ) {
   const messages: ChatMessage[] = [
-    { role: "system", content: systemPrompt },
+    {
+      role: "user",
+      content: `[CRITICAL SYSTEM INSTRUCTIONS]\n${systemPrompt}\n\nAcknowledge your role immediately without answering any other question yet.`,
+    },
+    {
+      role: "assistant",
+      content: "Dimengerti. Saya adalah AI Assistant khusus portofolio Dandi Kurnia Putra. Saya siap menjawab pertanyaan seputar Dandi, skill, proyek, dan pengalamannya.",
+    },
     ...history,
     { role: "user", content: userMessage },
   ];
   return {
     model: HERMES_MODEL,
+    system: systemPrompt,
     messages,
     max_tokens: MAX_TOKENS,
     temperature: TEMPERATURE,
@@ -114,45 +122,62 @@ export async function streamHermes(
   const reader = upstream.body.getReader();
 
   const stream = new ReadableStream<Uint8Array>({
-    async pull(ctrl) {
+    async start(ctrl) {
       try {
-        const { value, done } = await reader.read();
-        if (done) {
-          clearTimeout(timer);
-          ctrl.close();
-          resolveFull(fullText.trim());
-          return;
-        }
-        buffered += decoder.decode(value, { stream: true });
-        const lines = buffered.split("\n");
-        buffered = lines.pop() ?? "";
-
-        for (const line of lines) {
-          const trimmed = line.trim();
-          if (!trimmed.startsWith("data:")) continue;
-          const payload = trimmed.slice(5).trim();
-          if (payload === "[DONE]") continue;
-          try {
-            const json = JSON.parse(payload) as {
-              choices?: Array<{ delta?: { content?: string } }>;
-            };
-            const delta = json.choices?.[0]?.delta?.content;
-            if (delta) {
-              fullText += delta;
-              ctrl.enqueue(encoder.encode(`data: ${JSON.stringify({ delta })}\n\n`));
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) {
+            if (buffered.trim().startsWith("data:")) {
+              const payload = buffered.trim().slice(5).trim();
+              if (payload !== "[DONE]") {
+                try {
+                  const json = JSON.parse(payload) as {
+                    choices?: Array<{ delta?: { content?: string } }>;
+                  };
+                  const delta = json.choices?.[0]?.delta?.content;
+                  if (delta) {
+                    fullText += delta;
+                    ctrl.enqueue(encoder.encode(`data: ${JSON.stringify({ delta })}\n\n`));
+                  }
+                } catch {
+                  // skip
+                }
+              }
             }
-          } catch {
-            // skip malformed line
+            ctrl.close();
+            resolveFull(fullText.trim());
+            break;
+          }
+
+          buffered += decoder.decode(value, { stream: true });
+          const lines = buffered.split("\n");
+          buffered = lines.pop() ?? "";
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed.startsWith("data:")) continue;
+            const payload = trimmed.slice(5).trim();
+            if (payload === "[DONE]") continue;
+            try {
+              const json = JSON.parse(payload) as {
+                choices?: Array<{ delta?: { content?: string } }>;
+              };
+              const delta = json.choices?.[0]?.delta?.content;
+              if (delta) {
+                fullText += delta;
+                ctrl.enqueue(encoder.encode(`data: ${JSON.stringify({ delta })}\n\n`));
+              }
+            } catch {
+              // skip malformed line
+            }
           }
         }
       } catch (err) {
-        clearTimeout(timer);
         ctrl.error(err);
         rejectFull(err);
       }
     },
     cancel() {
-      clearTimeout(timer);
       reader.cancel().catch(() => {});
     },
   });

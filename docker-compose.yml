@@ -71,6 +71,9 @@ services:
       MINIO_REGION: ${MINIO_REGION:-us-east-1}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
       NEXTAUTH_URL: ${NEXTAUTH_URL}
+      HERMES_BASE_URL: ${HERMES_BASE_URL:-http://10.254.200.211:8643/v1}
+      HERMES_API_KEY: ${HERMES_API_KEY}
+      HERMES_MODEL: ${HERMES_MODEL:-claude}
     depends_on:
       postgres:
         condition: service_healthy
