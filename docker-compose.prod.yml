@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   postgres:
     image: postgres:16-alpine
@@ -19,9 +17,8 @@ services:
       timeout: 5s
       retries: 5
 
-  # MinIO untuk object storage gambar dsb (Opsional jika pakai S3 dari AWS)
   minio:
-    image: minio/minio:latest
+    image: quay.io/minio/minio:latest
     container_name: webportofolio_minio_prod
     restart: unless-stopped
     command: server /data --console-address ":9001"
@@ -39,9 +36,8 @@ services:
       timeout: 10s
       retries: 3
 
-  # Setup bucket MinIO awal
   minio-init:
-    image: minio/mc:latest
+    image: quay.io/minio/mc:latest
     depends_on:
       minio:
         condition: service_healthy
@@ -54,7 +50,6 @@ services:
       "
 
   app:
-    # Menggunakan image hasil dari Github Actions
     image: ghcr.io/dandikurnia/webportofoliov2:latest
     container_name: webportofolio_app_prod
     restart: unless-stopped
@@ -71,15 +66,14 @@ services:
       MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
       MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
       MINIO_BUCKET: ${MINIO_BUCKET}
+      HERMES_BASE_URL: ${HERMES_BASE_URL:-http://10.254.200.211:8643/v1}
       HERMES_API_KEY: ${HERMES_API_KEY}
-      HERMES_BASE_URL: ${HERMES_BASE_URL}
-      HERMES_MODEL: ${HERMES_MODEL}
+      HERMES_MODEL: ${HERMES_MODEL:-claude}
     depends_on:
       postgres:
         condition: service_healthy
       minio:
         condition: service_healthy
-    # Akan menjalankan migrate database ke postgres saat container di start
     command: node server.js
 
   migrate:

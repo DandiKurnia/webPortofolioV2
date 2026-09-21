@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 interface Resume {
   url: string;
@@ -14,6 +15,8 @@ interface Portfolio {
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("");
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [resume, setResume] = useState<Resume | null>(null);
   const [portfolio, setPortfolio] = useState<Portfolio | null>(null);
 
@@ -104,17 +107,16 @@ export default function Navbar() {
       </div>
 
       <div className="hidden md:flex items-center gap-4 lg:gap-8 font-mono text-xs lg:text-sm font-bold">
-        <a className={getLinkClass("#hero")} href="#hero">
+        <a className={getLinkClass("#hero")} href={isHome ? "#hero" : "/#hero"}>
           Home
         </a>
-
-        <a className={getLinkClass("#skills")} href="#skills">
+        <a className={getLinkClass("#skills")} href={isHome ? "#skills" : "/#skills"}>
           Skills
         </a>
-        <a className={getLinkClass("#projects")} href="#projects">
+        <a className={getLinkClass("#projects")} href={isHome ? "#projects" : "/#projects"}>
           Projects
         </a>
-        <a className={getLinkClass("#certifications")} href="#certifications">
+        <a className={getLinkClass("#certifications")} href={isHome ? "#certifications" : "/#certifications"}>
           Certifications
         </a>
       </div>
