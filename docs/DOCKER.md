@@ -29,11 +29,13 @@ The workflow `.github/workflows/docker-publish.yml` automatically:
 
 ### Pull and Run on Your Server
 
-1. **Login to GitHub Container Registry:**
+1. **Login to GitHub Container Registry (bukan Docker Hub):**
 
    ```bash
    echo $GITHUB_TOKEN | docker login ghcr.io -u <your-username> --password-stdin
    ```
+
+   > Note: Image MinIO menggunakan `docker.io/pgsty/silo` karena upstream `quay.io/minio/minio` sudah di-private sejak Sep 2026.
 
 2. **Pull the image:**
 

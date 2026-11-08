@@ -18,7 +18,7 @@ services:
       retries: 5
 
   minio:
-    image: quay.io/minio/minio:latest
+    image: docker.io/pgsty/silo:RELEASE.2026-10-26T00-00-00Z
     container_name: webportofolio_minio_prod
     restart: unless-stopped
     command: server /data --console-address ":9001"
@@ -37,7 +37,7 @@ services:
       retries: 3
 
   minio-init:
-    image: quay.io/minio/mc:latest
+    image: docker.io/pgsty/silo:RELEASE.2026-10-26T00-00-00Z
     depends_on:
       minio:
         condition: service_healthy
