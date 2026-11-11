@@ -41,13 +41,27 @@ services:
     depends_on:
       minio:
         condition: service_healthy
-    entrypoint: >
-      /bin/sh -c "
-      mc alias set local http://minio:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
-      mc mb --ignore-existing local/${MINIO_BUCKET};
-      mc anonymous set download local/${MINIO_BUCKET};
-      exit 0;
-      "
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        mc alias set local http://minio:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD}
+        mc mb --ignore-existing local/${MINIO_BUCKET}
+        cat <<EOF > /tmp/public-read.json
+        {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": { "AWS": ["*"] },
+              "Action": ["s3:GetObject"],
+              "Resource": ["arn:aws:s3:::${MINIO_BUCKET}/*"]
+            }
+          ]
+        }
+        EOF
+        mc anonymous set-json /tmp/public-read.json local/${MINIO_BUCKET}
+        exit 0
 
   app:
     image: ghcr.io/dandikurnia/webportofoliov2:latest
