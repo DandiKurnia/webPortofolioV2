@@ -1,14 +1,77 @@
-const WINDOW_MS = 15 * 60 * 1000;
-const MAX_ATTEMPTS = 5;
-const MAX_TRACKED_KEYS = 1000;
+export type RateLimitResult = {
+  ok: boolean;
+  limit: number;
+  remaining: number;
+  /** seconds until the caller may retry (0 when allowed) */
+  retryAfter: number;
+  /** epoch ms when the counter drops back to zero */
+  resetAt: number;
+};
 
-const attempts = new Map<string, number[]>();
+export type Limiter = {
+  consume(key: string): RateLimitResult;
+  reset(key: string): void;
+};
 
-function prune(now: number) {
-  if (attempts.size <= MAX_TRACKED_KEYS) return;
-  for (const [key, hits] of attempts) {
-    if (!hits.some((t) => now - t < WINDOW_MS)) attempts.delete(key);
+// ponytail: per-process memory. Fine for one container; use Redis when running more replicas.
+export function createLimiter(options: {
+  windowMs: number;
+  max: number;
+  maxKeys?: number;
+}): Limiter {
+  const { windowMs, max, maxKeys = 1000 } = options;
+  const hits = new Map<string, number[]>();
+
+  function prune(now: number) {
+    if (hits.size <= maxKeys) return;
+    for (const [key, stamps] of hits) {
+      if (!stamps.some((t) => now - t < windowMs)) hits.delete(key);
+    }
   }
+
+  function consume(key: string): RateLimitResult {
+    const now = Date.now();
+    const active = (hits.get(key) ?? []).filter((t) => now - t < windowMs);
+    const resetAt = active.length ? active[0] + windowMs : now + windowMs;
+
+    if (active.length >= max) {
+      hits.set(key, active);
+      return {
+        ok: false,
+        limit: max,
+        remaining: 0,
+        retryAfter: Math.max(1, Math.ceil((resetAt - now) / 1000)),
+        resetAt,
+      };
+    }
+
+    active.push(now);
+    hits.set(key, active);
+    prune(now);
+
+    return {
+      ok: true,
+      limit: max,
+      remaining: Math.max(0, max - active.length),
+      retryAfter: 0,
+      resetAt,
+    };
+  }
+
+  return { consume, reset: (key) => void hits.delete(key) };
+}
+
+export const loginLimiter = createLimiter({ windowMs: 15 * 60 * 1000, max: 5 });
+export const chatLimiter = createLimiter({ windowMs: 5 * 60 * 1000, max: 10 });
+
+export function rateLimitHeaders(r: RateLimitResult): Record<string, string> {
+  const headers: Record<string, string> = {
+    "X-RateLimit-Limit": String(r.limit),
+    "X-RateLimit-Remaining": String(r.remaining),
+    "X-RateLimit-Reset": String(Math.ceil(r.resetAt / 1000)),
+  };
+  if (!r.ok) headers["Retry-After"] = String(r.retryAfter);
+  return headers;
 }
 
 export function clientIp(req: Request): string {
@@ -19,29 +82,6 @@ export function clientIp(req: Request): string {
   if (xff) return xff.split(",")[0].trim();
   return h.get("x-real-ip") ?? "unknown";
 }
-
-export function consume(key: string): { ok: boolean; retryAfter: number } {
-  const now = Date.now();
-  const hits = (attempts.get(key) ?? []).filter((t) => now - t < WINDOW_MS);
-
-  if (hits.length >= MAX_ATTEMPTS) {
-    attempts.set(key, hits);
-    return {
-      ok: false,
-      retryAfter: Math.ceil((WINDOW_MS - (now - hits[0])) / 1000),
-    };
-  }
-
-  hits.push(now);
-  attempts.set(key, hits);
-  prune(now);
-  return { ok: true, retryAfter: 0 };
-}
-
-export function reset(key: string): void {
-  attempts.delete(key);
-}
-
 
 // ponytail: success = redirect without error markers; adjust if NextAuth changes its callback contract.
 export function isSuccessfulSignIn(body: unknown): boolean {

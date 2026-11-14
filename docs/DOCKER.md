@@ -92,6 +92,21 @@ Required for production:
 - `MINIO_SECRET_KEY` - MinIO secret key
 - `MINIO_BUCKET` - MinIO bucket name (default: projects)
 
+Optional:
+
+- `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` - enables the AI answer cache only. Rate limiting always uses in-process memory, so it works without Redis.
+
+## Rate Limiting
+
+`lib/rate-limit.ts` holds one in-memory limiter per process:
+
+- Chat (`/api/chat`): 10 questions per 5 minutes per IP
+- Login (`/api/auth/callback/credentials`): 5 failed attempts per 15 minutes per IP, cleared on success
+
+Clients are identified by `cf-connecting-ip`, then the first `x-forwarded-for` entry, then `x-real-ip`. Every chat response carries `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset`; blocked requests return `429` plus `Retry-After` (JSON mode) or a `429` SSE stream carrying the same headers.
+
+Because the counters live in memory, they reset on container restart and are not shared across replicas. Running more than one app container requires moving the limiter to Redis.
+
 ## Architecture
 
 - **Standalone output mode:** Next.js builds a minimal production bundle

@@ -1,5 +1,5 @@
 import { GET as authGET, POST as authPOST } from "@/lib/auth";
-import { clientIp, consume, reset, isSuccessfulSignIn } from "@/lib/rate-limit";
+import { clientIp, loginLimiter, isSuccessfulSignIn } from "@/lib/rate-limit";
 
 // ponytail: in-memory limiter scoped per process. Fine for 1 instance; move to Redis when horizontal scaling.
 
@@ -17,7 +17,7 @@ export async function POST(req: Request, context: Context) {
   }
 
   const key = `login:${clientIp(req)}`;
-  const limit = consume(key);
+  const limit = loginLimiter.consume(key);
   if (!limit.ok) {
     return Response.json(
       { error: "Terlalu banyak percobaan login. Coba lagi nanti." },
@@ -30,7 +30,7 @@ export async function POST(req: Request, context: Context) {
   // NextAuth answers 200 even for failed sign-ins, so inspect the redirect target
   // instead of the status code before clearing the counter.
   const body = await res.clone().json().catch(() => null);
-  if (isSuccessfulSignIn(body)) reset(key);
+  if (isSuccessfulSignIn(body)) loginLimiter.reset(key);
 
   return res;
 }

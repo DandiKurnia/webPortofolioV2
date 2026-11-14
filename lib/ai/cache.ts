@@ -1,8 +1,6 @@
 import { Redis } from "@upstash/redis";
 import { createHash } from "node:crypto";
 
-const RATE_LIMIT_MAX = 10;
-const RATE_LIMIT_WINDOW_SEC = 300;
 const CACHE_TTL_SEC = 86_400;
 
 let _redis: Redis | null = null;
@@ -53,35 +51,5 @@ export async function setCached(question: string, reply: string): Promise<void> 
     await redis.set(cacheKey(question), { reply, ts: Date.now() }, { ex: CACHE_TTL_SEC });
   } catch (err) {
     console.error("redis setCached error:", err);
-  }
-}
-
-export async function checkRateLimit(
-  ip: string
-): Promise<{ ok: boolean; remaining: number; retryAfter: number }> {
-  const redis = getRedis();
-  if (!redis) {
-    return { ok: true, remaining: RATE_LIMIT_MAX, retryAfter: 0 };
-  }
-  try {
-    const key = `rl:${ip}`;
-    const now = Date.now();
-    const windowStart = now - RATE_LIMIT_WINDOW_SEC * 1000;
-
-    const pipeline = redis.pipeline();
-    pipeline.zremrangebyscore(key, 0, windowStart);
-    pipeline.zcard(key);
-    pipeline.zadd(key, { score: now, member: `${now}-${Math.random()}` });
-    pipeline.expire(key, RATE_LIMIT_WINDOW_SEC);
-    const results = (await pipeline.exec()) as [number, number, number, number];
-
-    const count = (results[1] ?? 0) + 1;
-    const ok = count <= RATE_LIMIT_MAX;
-    const remaining = Math.max(0, RATE_LIMIT_MAX - count);
-    const retryAfter = ok ? 0 : RATE_LIMIT_WINDOW_SEC;
-    return { ok, remaining, retryAfter };
-  } catch (err) {
-    console.error("redis checkRateLimit error:", err);
-    return { ok: true, remaining: RATE_LIMIT_MAX, retryAfter: 0 };
   }
 }

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { streamHermes, askHermes } from "@/lib/ai/client";
-import { checkRateLimit, getCached, setCached } from "@/lib/ai/cache";
+import { getCached, setCached } from "@/lib/ai/cache";
+import { chatLimiter, clientIp, rateLimitHeaders } from "@/lib/rate-limit";
 import {
   buildSystemPrompt,
   RATE_LIMITED_MSG,
@@ -45,12 +46,6 @@ function detectLang(message: string): "id" | "en" {
   return idHints.test(message) ? "id" : "en";
 }
 
-function getClientIp(req: Request): string {
-  const xff = req.headers.get("x-forwarded-for");
-  if (xff) return xff.split(",")[0].trim();
-  return req.headers.get("x-real-ip") || "unknown";
-}
-
 function jsonResponse(body: object, status = 200, headers?: Record<string, string>): Response {
   return new Response(JSON.stringify(body), {
     status,
@@ -58,13 +53,19 @@ function jsonResponse(body: object, status = 200, headers?: Record<string, strin
   });
 }
 
-function sseResponse(stream: ReadableStream<Uint8Array>): Response {
+function sseResponse(
+  stream: ReadableStream<Uint8Array>,
+  headers?: Record<string, string>,
+  status = 200,
+): Response {
   return new Response(stream, {
+    status,
     headers: {
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache, no-transform",
       Connection: "keep-alive",
       "X-Accel-Buffering": "no",
+      ...headers,
     },
   });
 }
@@ -91,18 +92,23 @@ export async function POST(request: Request) {
 
   const { message } = parsed;
   const wantsStream = parsed.stream ?? true;
-  const ip = getClientIp(request);
+  const ip = clientIp(request);
 
-  // [2] Rate limit
-  const rl = await checkRateLimit(ip);
+  // [2] Rate limit — 10 questions / 5 minutes / IP, mirroring the UI copy.
+  const rl = chatLimiter.consume(`chat:${ip}`);
+  const rlHeaders = rateLimitHeaders(rl);
   if (!rl.ok) {
     if (wantsStream) {
-      return sseResponse(staticSseStream(RATE_LIMITED_MSG, { rateLimited: true }));
+      return sseResponse(
+        staticSseStream(RATE_LIMITED_MSG, { rateLimited: true }),
+        rlHeaders,
+        429,
+      );
     }
     return jsonResponse(
       { error: "rate_limited", message: RATE_LIMITED_MSG },
       429,
-      { "Retry-After": String(rl.retryAfter) }
+      rlHeaders,
     );
   }
 
@@ -110,18 +116,18 @@ export async function POST(request: Request) {
   if (isBlocked(message)) {
     const refusal = detectLang(message) === "id" ? REFUSAL_ID : REFUSAL_EN;
     if (wantsStream) {
-      return sseResponse(staticSseStream(refusal, { filtered: true }));
+      return sseResponse(staticSseStream(refusal, { filtered: true }), rlHeaders);
     }
-    return jsonResponse({ reply: refusal, cached: false, filtered: true });
+    return jsonResponse({ reply: refusal, cached: false, filtered: true }, 200, rlHeaders);
   }
 
   // [5] Cache check
   const cached = await getCached(message);
   if (cached) {
     if (wantsStream) {
-      return sseResponse(staticSseStream(cached, { cached: true }));
+      return sseResponse(staticSseStream(cached, { cached: true }), rlHeaders);
     }
-    return jsonResponse({ reply: cached, cached: true });
+    return jsonResponse({ reply: cached, cached: true }, 200, rlHeaders);
   }
 
   const history = parsed.history ?? [];
@@ -137,12 +143,12 @@ export async function POST(request: Request) {
           if (text) void setCached(message, text);
         })
         .catch(() => {});
-      return sseResponse(stream);
+      return sseResponse(stream, rlHeaders);
     }
 
     const reply = await askHermes(systemPrompt, message, history);
     void setCached(message, reply);
-    return jsonResponse({ reply, cached: false });
+    return jsonResponse({ reply, cached: false }, 200, rlHeaders);
   } catch (err) {
     console.error("chat route error:", err);
     return jsonResponse(
@@ -150,7 +156,8 @@ export async function POST(request: Request) {
         error: "upstream_error",
         message: "Maaf, lagi ada gangguan. Coba lagi sebentar ya.",
       },
-      502
+      502,
+      rlHeaders,
     );
   }
 }
